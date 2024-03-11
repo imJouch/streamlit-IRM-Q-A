@@ -9,7 +9,7 @@ from langchain_openai import AzureChatOpenAI
 
 @st.cache_resource
 def load_data(vector_store_dir: str="data/IRM-help-reviews-faiss"):
-    db = FAISS.load_local(vector_store_dir, AzureOpenAIEmbeddings())
+    db = FAISS.load_local(vector_store_dir, AzureOpenAIEmbeddings(),allow_dangerous_deserialization=True)
     llm = AzureChatOpenAI(model_name="gpt-35-turbo", temperature=0.5)
 
     print("Loading data...")
